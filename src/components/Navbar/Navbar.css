@@ -1,9 +1,15 @@
-.navbar{
-    padding:20px 0;
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;  
+    background-color: white; 
+    padding: 20px 0;
     display: flex;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
+    width: 100%;
 }
+
 
 .navbar .logo{
     width:150px;

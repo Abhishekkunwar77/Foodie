@@ -9,13 +9,16 @@ const Navbar = ({setShowLogin}) => {
   const{getTotalCartAmount}=useContext(StoreContext);
   return (
     <div className="navbar">
-      <Link to ='/'>
+      <Link
+        to="/"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
         <img src={assets.logo} alt="Website Logo" className="logo" />
       </Link>
 
       <ul className="navbar-menu">
         <Link
-          to="/"
+          to="#header"
           onClick={() => setMenu("home")}
           className={menu === "home" ? "active" : ""}
         >
@@ -53,9 +56,13 @@ const Navbar = ({setShowLogin}) => {
 
         <div className="navbar-search-icon">
           <Link to="/cart">
-            <img src={assets.basket_icon} alt="Shopping Basket" style={{height:'27px', width:'27px'}} />
+            <img
+              src={assets.basket_icon}
+              alt="Shopping Basket"
+              style={{ height: "27px", width: "27px" }}
+            />
           </Link>
-          <div className={getTotalCartAmount()===0?"":"dot"}></div>
+          <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
         </div>
 
         <button onClick={() => setShowLogin(true)}>Sign in</button>
