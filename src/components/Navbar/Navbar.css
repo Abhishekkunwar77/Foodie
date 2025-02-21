@@ -4,8 +4,12 @@
     justify-content: space-between;
     align-items:center;
 }
+
 .navbar .logo{
     width:150px;
+}
+.navbar-menu a:hover {
+  color: green; 
 }
 .navbar-menu{
     display:flex;
@@ -32,7 +36,8 @@
   transition:0.3s;
 }
 .navbar button:hover{
-  background-color:#fff4f2;
+  background-color:rgb(119, 194, 119);
+  border: 1px solid rgb(0, 135, 246);
 }
 .navbar .active{
     padding-bottom:2px;
