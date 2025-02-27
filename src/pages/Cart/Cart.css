@@ -80,6 +80,8 @@
     color:white;
     border-radius: 4px;
 }
+
+
 @media (max-width:750px) {
     .cart-bottom{
         flex-direction:column-reverse;
@@ -87,4 +89,38 @@
     .cart-promocode{
         justify-content: start;
     }
+}.cart-empty {
+  text-align: center;
+  margin-top: 50px;
 }
+
+.cart-empty h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.cart-empty p {
+  color: #777;
+}
+
+.cart-empty button {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.clear-cart-btn {
+  background-color: red;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  align-self: flex-end;
+}
+
