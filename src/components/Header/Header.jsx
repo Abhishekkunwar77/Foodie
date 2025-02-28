@@ -7,7 +7,7 @@ const Header = () => {
         <h2>Order your favourite food here</h2>
         <p>
           From comforting classics to exotic delights—your next meal is just a
-          tap away!{" "}
+          tap away!
         </p>
         <button>View Menu</button>
       </div>
