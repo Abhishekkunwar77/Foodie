@@ -1,40 +1,40 @@
 import userModel from "../models/userModel.js";
-
-// Add items to the user's cart
 const addToCart = async (req, res) => {
   try {
-    // Validate userId
-    if (!req.body.userId) {
-      return res.json({ success: false, message: "User ID is required" });
+    const { userId, itemId } = req.body;
+
+    // Validate required fields
+    if (!userId || !itemId) {
+      return res.json({
+        success: false,
+        message: "User ID and Item ID are required",
+      });
     }
 
     // Find the user
-    let userData = await userModel.findById(req.body.userId);
+    let userData = await userModel.findById(userId);
     if (!userData) {
       return res.json({ success: false, message: "User not found" });
     }
 
-    // Initialize cartData if it doesn't exist
-    if (!userData.cartData) {
+    // Ensure cartData is initialized
+    if (!userData.cartData || typeof userData.cartData !== "object") {
       userData.cartData = {};
     }
 
     // Update cartData
-    let cartData = userData.cartData;
-    if (!cartData[req.body.itemId]) {
-      cartData[req.body.itemId] = 1;
-    } else {
-      cartData[req.body.itemId] += 1;
-    }
+    userData.cartData[itemId] = (userData.cartData[itemId] || 0) + 1;
 
-    // Save the updated cartData
-    await userModel.findByIdAndUpdate(req.body.userId, { cartData });
-    res.json({ success: true, message: "Added to cart" });
+    // Save the updated user data
+    await userData.save(); // ✅ Using save() instead of findByIdAndUpdate
+
+    res.json({ success: true, message: "Item added to cart" });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.error("Error in addToCart:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 
 // Remove items from the user's cart
 const removeFromCart = async (req, res) => {

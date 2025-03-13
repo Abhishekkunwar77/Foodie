@@ -41,6 +41,7 @@ let orderData={
   items:orderItems,
   amount:getTotalCartAmount()+2,
 }
+console.log(token);
 let response = await axios.post(url + "/api/order/place", orderData, {
   headers: { Authorization: `Bearer ${token}` },
 });
