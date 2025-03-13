@@ -1,0 +1,12 @@
+{
+    "editor.suggestOnTriggerCharacters": true,
+    "window.autoDetectColorScheme": false,
+    "liveSassCompile.settings.autoprefix": [
+
+    ],
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    }
+}
