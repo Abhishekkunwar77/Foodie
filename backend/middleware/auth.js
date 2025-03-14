@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const authMiddleware = async (req, res, next) => {
   // Extract token from the Authorization header
-  
+
   const token =
     req.headers.authorization && req.headers.authorization.split(" ")[1];
 
@@ -16,7 +16,6 @@ const authMiddleware = async (req, res, next) => {
 
     // Attach the userId to the request object (req.userId) for use in other parts of the app
     req.body.userId = decodedToken.id;
- 
 
     // Proceed to the next middleware or route handler
     next();
