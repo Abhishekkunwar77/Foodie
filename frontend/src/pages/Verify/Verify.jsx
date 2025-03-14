@@ -22,6 +22,7 @@ const Verify = () => {
    useEffect(() => {
      if (orderId && success) {
        verifyPayment();
+       navigate("/")
      } else {
        navigate("/"); 
      }
