@@ -2,14 +2,11 @@ import jwt from "jsonwebtoken";
 
 const authMiddleware = async (req, res, next) => {
   // Extract token from the Authorization header
-
   const token =
     req.headers.authorization && req.headers.authorization.split(" ")[1];
-
   if (!token) {
     return res.json({ success: false, message: "Not authorized, Login again" });
   }
-
   try {
     // Verify the token using the JWT_SECRET
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);

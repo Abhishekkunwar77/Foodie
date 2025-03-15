@@ -4,8 +4,6 @@ import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-
-
 const PlaceOrder = () => {
   const {getTotalCartAmount,token,food_list, cartItems, url}=useContext(StoreContext);
   const [data,setData]=useState({
@@ -41,6 +39,7 @@ let orderData={
   items:orderItems,
   amount:getTotalCartAmount()+2,
 }
+console.log(orderData);
 console.log(token);
 let response = await axios.post(url + "/api/order/place", orderData, {
   headers: { Authorization: `Bearer ${token}` },
@@ -55,6 +54,7 @@ let response = await axios.post(url + "/api/order/place", orderData, {
 const navigate=useNavigate();
 
   useEffect(() => {
+    console.log("Token in PlaceOrder",token)
     if (!token) {
       toast.error("Please Login first");
       navigate("/cart");
@@ -63,6 +63,7 @@ const navigate=useNavigate();
       navigate("/cart");
     }
   }, [data]);
+
 
   return (
     <form onSubmit={placeOrder} className="place-order">

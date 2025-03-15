@@ -50,8 +50,9 @@ const StoreContextProvider = (props) => {
         { headers: { token } }
       );
       if (response.data.success) {
-        toast.success("item Removed from Cart");
-      } else {
+        toast.success("Item Removed from Cart");
+      } 
+      else {
         toast.error("Something went wrong");
       }
     }
@@ -82,19 +83,28 @@ const StoreContextProvider = (props) => {
       {},
       { headers: { token } }
     );
-    setCartItems(response.data.cartData || {}); // ✅ If undefined, set an empty object
+    setCartItems(response.data.cartData || {}); 
   };
 
-  useEffect(() => {
-    async function loadData() {
-      await fetchFoodList();
-      if (localStorage.getItem("token")) {
-        setToken(localStorage.getItem("token"));
-        await loadCartData(localStorage.getItem("token"));
-      }
+useEffect(() => {
+  async function loadData() {
+    await fetchFoodList();
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken); 
     }
-    loadData();
-  }, []);
+  }
+  loadData();
+}, []);
+
+useEffect(() => {
+  if (token) {
+    loadCartData(token); 
+  }
+}, [token]);
+
+
+
   const contextValue = {
     food_list,
     cartItems,
